@@ -47,15 +47,15 @@ class Trainer:
             trainer.fit(model, self.dataloader_train, self.dataloader_val)
             best_model_path = checkpoint.best_model_path
             print(f"best_model_path : {best_model_path}")
-            self._test(best_model_path)
+            self._test(best_model_path, cuda)
         else:
             print("stopping ...")
-    def _test(self, best_model_path: str):
+    def _test(self, best_model_path: str, cuda: bool):
         num = 0
         for data in tqdm(self.dataset_test):
             wrong = data["wrong_text"]
             correct = data["correct_text"]
-            predict_text = predict.predict(wrong, best_model_path)
+            predict_text = predict.predict(wrong, best_model_path, cuda)
             # 文章がすべて正解していたら加算する
             if correct == predict_text:
                 num += 1
