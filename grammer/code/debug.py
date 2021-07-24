@@ -1,5 +1,5 @@
 import sys 
-from code import predict
+import predict 
 args = sys.argv 
 text = args[1]
 best_model_path = "./model/###"

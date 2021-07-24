@@ -47,7 +47,6 @@ class SC_tokenizer(BertJapaneseTokenizer):
     ):
         """
         文章を符号化し、それぞれのトークンの文章中の位置も特定しておく。
-        ここでは形態素解析を基に、位置を特定するspansを作成する。
         推論する際の準備。
         """
         # 文章のトークン化を行い、
@@ -81,9 +80,9 @@ class SC_tokenizer(BertJapaneseTokenizer):
                     break
 
         # 符号化を行いBERTに入力できる形式にする。
-        input_ids = tokenizer.convert_tokens_to_ids(tokens) 
-        encoding = tokenizer.prepare_for_model(
-            input_ids, 
+#         input_ids = tokenizer.convert_tokens_to_ids(tokens) 
+        encoding = tokenizer(
+            text, 
             max_length=max_length, 
             padding='max_length' if max_length else False, 
             truncation=True if max_length else False
@@ -106,7 +105,7 @@ class SC_tokenizer(BertJapaneseTokenizer):
         文章と、各トークンのラベルの予測値、文章中での位置を入力とする。
         labelsのトークンを使ってbertに登録されているボキャブラリーから単語を取り出し、文章を生成する
         """
-        assert len(spans) == len(labels)
+#         assert len(spans) == len(labels)
 
         # labels, spansから特殊トークンに対応する部分を取り除く
         labels = [label for label, span in zip(labels, spans) if span[0]!=-1]
