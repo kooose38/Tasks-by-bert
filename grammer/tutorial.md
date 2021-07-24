@@ -1,7 +1,7 @@
 ## Proofreading with bert 
 Generally, there are various tasks in grammar proofreading, but here we will perform the task of proofreading incorrect conversion of kanji. When selecting a kanji from conversion candidates, you accidentally select a kanji with a different meaning.
 
----example input data 
+---
 
 mistake: 努力が実り入省した。
 correct: 努力が実り入賞した。
@@ -58,7 +58,7 @@ Was it displayed correctly? Thank you !
 
 ### Understanding learning 
 
-First, take a look at [trainer.py](https://github.com/kooose38/Tasks-by-bert/blob/master/grammer/code/trainer.py). Here, training, verification, and reading of test data are performed. The score is detected from the sentences that will be predicted from the test data after learning. In the argument, specify ** number of tokens **, ** number of batches ** for training data, and ** learning rate **. The number of tokens increases in proportion to the time it takes to complete learning. Of course, you can also specify ** gpu **, so it is recommended to execute it in the environment. bert has many parameters. So it will take a lot of time to learn. Check the `./model/` file after learning. Hopefully the best model will be stored there. I hope you can do it. 
+First, take a look at [trainer.py](https://github.com/kooose38/Tasks-by-bert/blob/master/grammer/code/trainer.py). Here, training, verification, and reading of test data are performed. The score is detected from the sentences that will be predicted from the test data after learning. In the argument, specify **number of tokens**, **number of batches** for training data, and **learning rate**. The number of tokens increases in proportion to the time it takes to complete learning. Of course, you can also specify ** gpu **, so it is recommended to execute it in the environment. bert has many parameters. So it will take a lot of time to learn. Check the `./model/` file after learning. Hopefully the best model will be stored there. I hope you can do it. 
 
 ```command
   $ cd ./code  
