@@ -1,4 +1,3 @@
-
 def get_category():
     category_list = [
         'dokujo-tsushin',

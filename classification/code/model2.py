@@ -11,7 +11,7 @@ class BertForSequenceClassification_(nn.Module):
             -> (文章数, 768) tokenから[CLS]のベクトルのみを抽出
               -> (文章数, num_labels) Linear/ ReLU/ Softmax
         """
-        super(Deve, self).__init__()
+        super(BertForSequenceClassification_, self).__init__()
         self.bert_sc = BertForSequenceClassification.from_pretrained(model_name,
                                                                     num_labels=num_labels)
     def forward(self, x):
