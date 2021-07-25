@@ -4,7 +4,7 @@ from torch.utils.data import DataLoader
 from tokenizer import tokenizer_ 
 import torch
 from transformers import BertJapaneseTokenizer, BertForSequenceClassification
-import pytorch_lightning as pl
+# import pytorch_lightning as pl
 class DataLoader_:
     def __init__(self):
         self.train, self.val, self.test = [], [], []
