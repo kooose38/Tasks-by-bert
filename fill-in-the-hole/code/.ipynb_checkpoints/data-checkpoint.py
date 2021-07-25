@@ -10,7 +10,6 @@ def random_input(text: str, num_mask=2) -> str:
         token[rand] = "[MASK]"
     token = "".join(token)
     print_text = token.replace("[MASK]", "●")
-    print(f"({print_text}) predict ● from")
+    print(f"(  {print_text}  )   から  ●  を予測します。")
     print("~"*100)
     return token
-# random_input("私の名前は田中です")

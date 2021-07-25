@@ -1,4 +1,4 @@
-from predict import PredictFromMaskedSentence
+from code import predict
 import argparse 
 
 parser = argparse.ArgumentParser()
@@ -23,7 +23,7 @@ parser.add_argument("-hh",
 
 args = parser.parse_args()
 
-pred = PredictFromMaskedSentence()
+pred = predict.PredictFromMaskedSentence()
 if args.method == "greedy":
     print("We will solve the fill-in-the-blank problem with greedy-prediction")
     print("~"*100)
