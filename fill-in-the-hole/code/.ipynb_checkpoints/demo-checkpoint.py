@@ -1,6 +1,7 @@
 from predict import PredictFromMaskedSentence
 import argparse 
 
+
 parser = argparse.ArgumentParser()
 
 parser.add_argument("text", 
@@ -23,13 +24,20 @@ parser.add_argument("-hh",
 
 args = parser.parse_args()
 
-pred = PredictFromMaskedSentence()
-if args.method == "greedy":
-    print("We will solve the fill-in-the-blank problem with greedy-prediction")
-    print("~"*100)
-    pred.greedy_prediction(args.text, args.num_mask, args.num_topk)
-elif args.method == "beam":
-    print("We will solve the fill-in-the-blank problem with beam-search")
-    print("~"*100)
-    pred.beam_search(args.text, args.num_mask, args.num_topk)
+def pred(args, flag):
 
+    pred = PredictFromMaskedSentence()
+    if args.method == "greedy":
+        print("We will solve the fill-in-the-blank problem with greedy-prediction")
+        print("~"*100)
+        text = pred.greedy_prediction(args.text, args.num_mask, args.num_topk)
+    elif args.method == "beam":
+        print("We will solve the fill-in-the-blank problem with beam-search")
+        print("~"*100)
+        text = pred.beam_search(args.text, args.num_mask, args.num_topk)
+
+    print(f"final predicted values: {text}")
+    if flag:
+        return text 
+
+pred(args, flag=False)
