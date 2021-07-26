@@ -48,8 +48,17 @@ class PredictFromMaskedSentence:
             print(f"<<{_+1} layers>>")
             text = self._predict_mask_topk(text, num_topk, 0.0)[0][0]
             
-        print(f"final predicted values: {text}")
+#         print(f"final predicted values: {text}")
+        return text 
     def beam_search(self, text: str, num_mask: int, num_topk: int):
+        """
+        ビームサーチによる穴埋めか解決
+        まず[MASK]が複数ある場合に、最初の穴埋めを行います。
+        最初の穴埋めによる文章から評価の高かったいくつかを候補として、次の入力とします。
+        候補数として`num_topk`で指定します。
+        
+        つまり、最終予測としては各スコアの累積を指標として算出します。
+        """
         text = random_input(text, num_mask)
         scores_topk = np.array([0])
         text_topk = [text]
@@ -71,4 +80,5 @@ class PredictFromMaskedSentence:
             text_topk = [text_candidate[idx] for idx in idx_list] # 評価が高い文章とスコア
             scores_topk = [score_candidate[idx] for idx in idx_list]
             
-        print(f"final predicted values: {text_topk[0]}")
+#         print(f"final predicted values: {text_topk[0]}")
+        return text_topk[0]
