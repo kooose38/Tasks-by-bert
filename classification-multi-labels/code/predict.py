@@ -3,7 +3,7 @@ from model import BertForSequenceClassificationMultiLabel
 import torch 
 import numpy as np
 
-def predict_from_text(text: str, filepath: str):
+def predict_from_text(text: str, filepath: str, flag=False):
     model = BertForSequenceClassificationMultiLabel(3)
     model.load_state_dict(torch.load(filepath,
                                     map_location=torch.device("cpu")))
@@ -23,4 +23,5 @@ def predict_from_text(text: str, filepath: str):
         "positive": score[2]
     }
     print(f"output: {category}")
-    
+    if flag:
+        return category
