@@ -1,13 +1,12 @@
-from tokenizer import tokenizer_ 
-from model import BertForSequenceClassificationMultiLabel
+from tokenzier import tokenzier_ 
+from transfomers import BertJapaneseTokenizer 
 import torch 
-import numpy as np
 
 def predict_from_text(text: str, filepath: str):
-    model = BertForSequenceClassificationMultiLabel(3)
+    model = BertJapaneseTokenizer(3)
     model.load_state_dict(torch.load(filepath,
                                     map_location=torch.device("cpu")))
-    tokenizer = tokenizer_()
+    tokenizer = tokenzier_()
     
     encoding = tokenizer(text, return_tensors="pt")
     
@@ -24,3 +23,6 @@ def predict_from_text(text: str, filepath: str):
     }
     print(f"output: {category}")
     
+
+sample = "去年から黒字が減少した"
+predict_from_text(sample. "model_weights.pth")
