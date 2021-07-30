@@ -1,6 +1,7 @@
 import torch 
 from torch.utils.data import DataLoader 
 from tokenizer import tokenizer_
+import random 
 class DataLoader_:
     def __init__(self):
         self.tokenizer = tokenizer_()
@@ -16,6 +17,7 @@ class DataLoader_:
         n = len(data)
         n_train = int(n*.6)
         n_val = int(n*.2)
+        data = random.shuffle(data)
         self.dataset_train = data[:n_train]
         self.dataset_val = data[n_train:n_train+n_val]
         self.dataset_test = data[n_train+n_val:]
